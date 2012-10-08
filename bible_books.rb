@@ -1,8 +1,11 @@
 class BibleBooks
+  
   @bibleBooks = []
   @passage = []
   @number = "numbers".to_s.split(//)
   @test = []
+  @return = []
+  
   File.read("passage.txt").scan(/\w+/) do |word|
     @passage << word.downcase.chomp
   end
@@ -13,16 +16,17 @@ class BibleBooks
   
   @bibleBooks.each do |book|
     @passage.each do |pass|
+      @reverse = pass.reverse
       @x = /#{Regexp.escape(book)}/
-      @return = pass.match(@x)
-      puts @return
+      @return << pass.match(@x)
+      @return << @reverse.match(@x)
     end
   end
-  # re = "fluke"
-  #   @x = /#{Regexp.escape(re)}/
-  #   str = "fluke"
-  #   @asdf = str.match(@x)
-  #   puts @asdf
+  
+  @return.delete(nil)
+  puts @return
+   
+  
 end
 
 
