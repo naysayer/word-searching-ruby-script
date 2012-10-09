@@ -1,4 +1,3 @@
-bible
 Genesis
 Exodus
 Leviticus
